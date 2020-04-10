@@ -33,7 +33,7 @@ class MyClient( discord.Client ):
 	async def on_message( self, message ):
 		usertag = str( message.author.id )
 		split = message.content.split( " " )
-		offenseFile = open( "data/drinkoffenses/" + usertag + ".json", "w+" )
+		offenseFile = open( "data/drinkoffenses/" + usertag + ".txt", "w+" )
 		if message.author.bot: return
 		if split[0] == "!pepsiman":
 			try:
