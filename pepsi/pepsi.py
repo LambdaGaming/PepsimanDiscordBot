@@ -1,9 +1,13 @@
+import re
 from discord.ext import commands
 
 bot = commands.Bot( command_prefix = "!" )
 
 Drinks = [ "coke", "sprite", "coca-cola", "coca cola", "lemonade", "fanta", "beer", "surge", "vault", "water",  "tropicana", "bleach", "vodka", "dr pepper", "dr. pepper", "mtn dew", "mountain dew" ]
 GoodDrinks = [ "pep", "pepsi", "bepis" ]
+
+def findWord( word ):
+	return re.compile( r'\b({0})\b'.format( word ), flags = re.IGNORECASE ).search
 
 @bot.event
 async def on_ready():
@@ -16,7 +20,7 @@ async def on_message( message ):
 		await bot.process_commands( message )
 		return
 	for item in Drinks:
-		if item in message.content.lower():
+		if findWord( item )( message.content ) is not None:
 			await message.channel.send( "YOU FOOL! HOW DARE YOU DRINK " + item.upper() + " INSTEAD OF PEPSI!" )
 			offenseFile = open( "data/drinkoffenses/" + str( message.author.id ) + ".txt", "w+" )
 			offenseFile.write( message.content )
