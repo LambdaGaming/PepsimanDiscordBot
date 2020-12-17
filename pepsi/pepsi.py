@@ -19,6 +19,9 @@ async def on_message( message ):
 	if message.content.startswith( "!pepsiman" ):
 		await bot.process_commands( message )
 		return
+	if "sprite cranberry" in message.content:
+		await message.channel.send( "Well, it's not Pepsi, but I'll let it slide.\nhttps://i.ytimg.com/vi/J8JoBttIy_c/maxresdefault.jpg" )
+		return
 	for item in Drinks:
 		if findWord( item )( message.content ) is not None:
 			await message.channel.send( "YOU FOOL! HOW DARE YOU DRINK " + item.upper() + " INSTEAD OF PEPSI!" )
