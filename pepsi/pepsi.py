@@ -5,7 +5,7 @@ from discord.ext import commands
 
 bot = commands.Bot( command_prefix = "!" )
 
-Drinks = [ "coke", "sprite", "coca-cola", "coca cola", "lemonade", "fanta", "beer", "surge", "vault", "water",  "tropicana", "bleach", "vodka", "dr pepper", "dr. pepper", "mtn dew", "mountain dew" ]
+Drinks = [ "coke", "sprite", "coca-cola", "coca cola", "lemonade", "fanta", "beer", "surge", "vault", "water",  "tropicana", "bleach", "vodka", "dr pepper", "dr. pepper", "mtn dew", "mountain dew", "gfuel", "g fuel", "wine", "alcohol" ]
 GoodDrinks = [ "pep", "pepsi", "bepis" ]
 
 def findWord( word ):
@@ -72,7 +72,6 @@ async def totaloffenses( ctx, member: discord.Member = None ):
 		else:
 			await ctx.send( "Total number of offenses committed by " + ctx.message.author.name + ": 0" )
 		return
-	await ctx.send( "Oops. Something broke while getting the offenses. OP should probably fix this." )
 
 try:
 	token = open( "settings/token.txt" )
