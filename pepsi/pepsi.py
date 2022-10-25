@@ -3,7 +3,8 @@ import discord
 from pathlib import Path
 from discord.ext import commands
 
-bot = commands.Bot( command_prefix = "!" )
+intents = discord.Intents.all()
+bot = commands.Bot( command_prefix = "!", intents = intents )
 
 Drinks = [ "coke", "sprite", "coca-cola", "coca cola", "lemonade", "fanta", "beer", "surge", "vault", "water",
 "tropicana", "bleach", "vodka", "dr pepper", "dr. pepper", "mtn dew", "mountain dew", "gfuel", "g fuel", "wine",
