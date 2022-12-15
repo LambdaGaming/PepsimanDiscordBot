@@ -8,7 +8,7 @@ bot = commands.Bot( command_prefix = "!", intents = intents )
 
 Drinks = [ "coke", "sprite", "coca-cola", "coca cola", "lemonade", "fanta", "beer", "surge", "vault", "water",
 "tropicana", "bleach", "vodka", "dr pepper", "dr. pepper", "mtn dew", "mountain dew", "gfuel", "g fuel", "wine",
-"alcohol", "milk", "juice", "respawn", "lava", "magma", "gasoline", "oil" ]
+"alcohol", "milk", "juice", "respawn", "lava", "magma", "gasoline", "oil", "gin", "whiskey", "whisky", "grog", "rum" ]
 GoodDrinks = [ "pep", "pepsi", "bepis" ]
 
 def findWord( word ):
@@ -25,7 +25,7 @@ async def on_message( message ):
 		await bot.process_commands( message )
 		return
 	if "sprite cranberry" in message.content.lower():
-		await message.channel.send( "Well, it's not Pepsi, but I'll let it slide.\nhttps://i.ytimg.com/vi/J8JoBttIy_c/maxresdefault.jpg" )
+		await message.channel.send( "Well, it's not Pepsi, but I'll let it slide.\nhttps://i.ytimg.com/vi/EtNKG9LUz-w/maxresdefault.jpg" )
 		return
 	for item in Drinks:
 		if findWord( item )( message.content ) is not None:
