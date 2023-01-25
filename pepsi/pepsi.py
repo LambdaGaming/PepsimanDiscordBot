@@ -1,6 +1,5 @@
 import re
 import discord
-from pathlib import Path
 from discord.ext import commands
 
 intents = discord.Intents.all()
@@ -30,19 +29,6 @@ async def on_message( message ):
 	for item in Drinks:
 		if findWord( item )( message.content ) is not None:
 			await message.channel.send( "YOU FOOL! HOW DARE YOU DRINK " + item.upper() + " INSTEAD OF PEPSI!" )
-			Path( "data/drinkoffenses" ).mkdir( parents = True, exist_ok = True )
-			offenseDir = "data/drinkoffenses/" + str( message.author.id ) + ".txt"
-			if Path( offenseDir ).exists():
-				previousOffenses = open( offenseDir, "r" )
-				offenseNum = int( previousOffenses.read() )
-				previousOffenses.close()
-				offenseFile = open( offenseDir, "w+" )
-				offenseFile.write( str( offenseNum + 1 ) )
-				offenseFile.close()
-			else:
-				offenseFile = open( offenseDir, "w+" )
-				offenseFile.write( "1" )
-				offenseFile.close()
 			return
 	for item in GoodDrinks:
 		if item in message.content.lower():
@@ -56,25 +42,6 @@ async def pepsiman( ctx ):
 @pepsiman.command()
 async def givepepsi( ctx ):
 	await ctx.send( "https://i.kym-cdn.com/photos/images/original/000/995/571/fab.gif" )
-
-@pepsiman.command()
-async def totaloffenses( ctx, member: discord.Member = None ):
-	if member is not None:
-		if Path( "data/drinkoffenses/" + str( member.id ) + ".txt" ).exists():
-			offenseFile = open( "data/drinkoffenses/" + str( member.id ) + ".txt", "r" )
-			await ctx.send( "Total number of offenses committed by " + member.name + ": " + offenseFile.read() )
-			offenseFile.close()
-		else:
-			await ctx.send( "Total number of offenses committed by " + member.name + ": 0" )
-		return
-	else:
-		if Path( "data/drinkoffenses/" + str( ctx.message.author.id ) + ".txt" ).exists():
-			offenseFile = open( "data/drinkoffenses/" + str( ctx.message.author.id ) + ".txt", "r" )
-			await ctx.send( "Total number of offenses committed by " + ctx.message.author.name + ": " + offenseFile.read() )
-			offenseFile.close()
-		else:
-			await ctx.send( "Total number of offenses committed by " + ctx.message.author.name + ": 0" )
-		return
 
 try:
 	token = open( "settings/token.txt" )
