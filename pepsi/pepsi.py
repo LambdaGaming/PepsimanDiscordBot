@@ -4,7 +4,7 @@ from discord.ext import commands
 
 intents = discord.Intents.all()
 bot = commands.Bot( command_prefix = "!", intents = intents )
-
+TotalOffenses = 0
 Drinks = [ "coke", "sprite", "coca-cola", "coca cola", "lemonade", "fanta", "beer", "surge", "vault", "water",
 "tropicana", "bleach", "vodka", "dr pepper", "dr. pepper", "mtn dew", "mountain dew", "gfuel", "g fuel", "wine",
 "alcohol", "milk", "juice", "respawn", "lava", "magma", "gasoline", "oil", "gin", "whiskey", "whisky", "grog", "rum" ]
@@ -26,14 +26,17 @@ async def on_message( message ):
 	if "sprite cranberry" in message.content.lower():
 		await message.channel.send( "Well, it's not Pepsi, but I'll let it slide.\nhttps://i.ytimg.com/vi/EtNKG9LUz-w/maxresdefault.jpg" )
 		return
-	for item in Drinks:
-		if findWord( item )( message.content ) is not None:
-			await message.channel.send( "YOU FOOL! HOW DARE YOU DRINK " + item.upper() + " INSTEAD OF PEPSI!" )
-			return
-	for item in GoodDrinks:
-		if item in message.content.lower():
-			await message.channel.send( "https://i.pinimg.com/originals/30/da/4e/30da4e74b1d08a8b65c1dcbbae44b546.jpg" )
-			return
+	if TotalOffenses % 2 == 0:
+		for item in Drinks:
+			if findWord( item )( message.content ) is not None:
+				await message.channel.send( f"YOU FOOL! HOW DARE YOU DRINK {item.upper()} INSTEAD OF PEPSI!" )
+				TotalOffenses += 1
+				return
+		for item in GoodDrinks:
+			if item in message.content.lower():
+				await message.channel.send( "https://i.pinimg.com/originals/30/da/4e/30da4e74b1d08a8b65c1dcbbae44b546.jpg" )
+				TotalOffenses += 1
+				return
 
 @bot.group( invoke_without_command = True, ignore_extra = True )
 async def pepsiman( ctx ):
