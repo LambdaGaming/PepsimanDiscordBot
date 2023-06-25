@@ -26,6 +26,7 @@ async def on_message( message ):
 	if "sprite cranberry" in message.content.lower():
 		await message.channel.send( "Well, it's not Pepsi, but I'll let it slide.\nhttps://i.ytimg.com/vi/EtNKG9LUz-w/maxresdefault.jpg" )
 		return
+	global TotalOffenses
 	if TotalOffenses % 2 == 0:
 		for item in Drinks:
 			if findWord( item )( message.content ) is not None:
